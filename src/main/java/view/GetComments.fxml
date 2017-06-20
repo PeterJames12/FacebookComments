@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="585.0" prefWidth="997.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CommentController">
+   <JFXTextField fx:id="txtToken" focusTraversable="false" layoutX="14.0" layoutY="31.0" prefHeight="25.0" prefWidth="980.0" promptText="Token" />
+   <Text layoutX="14.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Token" />
+   <JFXTextField fx:id="txtLink" focusTraversable="false" layoutX="14.0" layoutY="94.0" prefHeight="25.0" prefWidth="171.0" promptText="link example tsn.ua" />
+   <Text layoutX="14.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Link" />
+   <JFXDatePicker fx:id="date" focusTraversable="false" layoutX="236.0" layoutY="94.0" promptText="Date from" />
+   <JFXButton fx:id="btnFindPost" layoutX="460.0" layoutY="94.0" style="-fx-background-color: #3F51B5; -fx-text-fill: white; hover: rgb(77,102,204);" text="Find posts" />
+   <JFXButton fx:id="btnFindComments" layoutX="560.0" layoutY="94.0" style="-fx-background-color: #3F51B5; -fx-text-fill: white; hover: rgb(77,102,204);" text="Find comments" />
+   <JFXButton fx:id="btnClear" layoutX="678.0" layoutY="94.0" style="-fx-background-color: #3F51B5; -fx-text-fill: white; hover: rgb(77,102,204);" text="Clear" />
+   <JFXTextArea fx:id="txtResult" layoutX="14.0" layoutY="140.0" prefHeight="431.0" prefWidth="973.0" />
+   <JFXTextField fx:id="txtLocation" focusTraversable="false" layoutX="743.0" layoutY="94.0" prefHeight="25.0" prefWidth="233.0" promptText="Location for output" />
+</AnchorPane>
