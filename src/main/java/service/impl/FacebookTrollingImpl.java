@@ -6,10 +6,10 @@ import service.Analyzer;
 import service.FacebookTrolling;
 import service.factory.ServiceFactory;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
@@ -113,9 +113,8 @@ public class FacebookTrollingImpl implements FacebookTrolling {
      * Write text to given file.
      */
     private void writer(String text, String location) throws IOException {
-        final File file = new File(location);
-        final BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file, true));
-        bufferedWriter.append(text);
-        bufferedWriter.flush();
+        List<String> list = new LinkedList<>();
+        list.add(text);
+        Files.write(Paths.get(location), list, Charset.forName("utf-8"));
     }
 }

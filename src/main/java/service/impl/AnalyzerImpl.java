@@ -15,6 +15,7 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.RAMDirectory;
 import service.Analyzer;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -25,9 +26,9 @@ public class AnalyzerImpl implements Analyzer {
 
     @Override
     public Float getCoeffFromCommentOrPost(String text) {
-        InputStream inputStream = AnalyzerImpl.class.getClassLoader().getResourceAsStream("dictionary.txt");
         try {
-            return matchCommentAgainstDictionary(text, inputStream);
+            final FileInputStream file = new FileInputStream("src\\main\\resources\\dictionary.txt");
+            return matchCommentAgainstDictionary(text, file);
         } catch (IOException e) {
             return 0.0f;
         }
@@ -58,11 +59,9 @@ public class AnalyzerImpl implements Analyzer {
         BooleanQuery.setMaxClauseCount(tokens.size() * 2);
 
         BooleanQuery.Builder queryBuilder = new BooleanQuery.Builder();
-        tokens.forEach(token -> {
-            queryBuilder
-                    .add(new FuzzyQuery(new Term("comment", token), 1), BooleanClause.Occur.SHOULD)
-                    .add(new WildcardQuery(new Term("comment", "*"+token+"*")), BooleanClause.Occur.SHOULD);
-        });
+        tokens.forEach(token -> queryBuilder
+                .add(new FuzzyQuery(new Term("comment", token), 1), BooleanClause.Occur.SHOULD)
+                .add(new WildcardQuery(new Term("comment", "*"+token+"*")), BooleanClause.Occur.SHOULD));
 
         return queryBuilder.build();
     }
